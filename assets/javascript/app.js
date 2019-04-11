@@ -37,5 +37,8 @@ $(document).ready(function () {
 		url: "https://api.yelp.com/v3/autocomplete?text=" + searchTerm + "/businesses/search?=" + searchTerm + "/location?=" + location + "/price?=" + price + "/rating?=" + ratings + "/limit?=5"
 	});
 
-
+	$('#search-btn').on('click', function () {
+		console.log($('option').val());
+		//logging only the first option value
+	})
 })
