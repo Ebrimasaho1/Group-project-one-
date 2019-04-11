@@ -10,6 +10,13 @@ $(document).ready(function () {
 	};
 	firebase.initializeApp(config);
 
+	//ADD VARIABLES FOR APP HERE
+	var searchTerm;
+	var location;
+	var price;
+	var ratings;
+
+
 	//ADD GOOGLE MAPS API HERE
 	var map;
 	function initMap() {
@@ -27,6 +34,8 @@ $(document).ready(function () {
 		beforeSend: function (xhr) {
 			xhr.setRequestHeader('Authorization', 'Bearer ' + yelpKey);
 		},
-		url: "https://api.yelp.com/v3/autocomplete?text=" + searchTerm + "/businesses/search?=" + searchTerm + "/location?=" + location + "/price?=" + price + "/limit?=5"
+		url: "https://api.yelp.com/v3/autocomplete?text=" + searchTerm + "/businesses/search?=" + searchTerm + "/location?=" + location + "/price?=" + price + "/rating?=" + ratings + "/limit?=5"
 	});
+
+
 })
