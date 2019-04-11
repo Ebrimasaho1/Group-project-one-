@@ -1,10 +1,10 @@
 
 #firstRow{
-    margin-left:190px;
+    margin-left:220px;
 }
 
 #secondRow{
-    margin-left:190px;
+    margin-left:100px;
 }
 
 #bld-selector{
@@ -12,8 +12,7 @@
     background-color: grey;
     color:white;
     margin-top:20px;
-    height: 70px;
-    
+    height: 70px;   
 }
 
 #ratings{
@@ -47,5 +46,36 @@
     width:400px;
     height:400px;
     background:gray;
+}
+.reviewOption{
+    width:100%;
+}
+.bld-selector{
+    width:100%;
+}
+
+#selectedResults{
+margin-left:120px;
+}
+
+#breakfastSelected{
+    margin-top:20px;
+    height:100px;
+    background-color: grey;
+}
+#lunchSelected{
+    margin-top:20px;
+    height:100px;
+    background-color: grey;
+}
+#dinnerSelected{
+    margin-top:20px;
+    height:100px;
+    background-color: grey;
+}
+#sendResults{
+    margin-top:20px;
+    height:100px;
+    background-color: grey;
 }
 

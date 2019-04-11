@@ -19,16 +19,41 @@
 
     <!--Inserting bootstrap grids for user selections-->
     <div class="row" id="firstRow">
-        <div class="col-md-1" id="bld-selector">BLD Selector</div>
-        <div class="col-md-1 offset-md-1" id="ratings">Ratings</div>
-        <div class="col-md-1 offset-md-1" id="radius">Radius</div>
-        <div class="col-md-1 offset-md-1" id="cost">Cost</div>
+        <div class="col-md-2" id="bld-selector">
+            <h6>Meal Time</h6>
+            <select class="bld-selector">
+                    <option value="breakfast">Breakfast</option>
+                    <option value="lunch">Lunch</option>
+                    <option value="dinner">Dinner</option>
+            </select>
+        </div>
+        <div class="col-md-2 offset-md-1" id="ratings">
+            <h6>Reviews</h6>
+            <select class= "reviewOption">
+                <option value="one">1</option>
+                <option value="two">2</option>
+                <option value="three">3</option>
+                <option value="four">4</option>
+                <option value="five">5</option>
+              </select>
+
+        </div>
+        <div class="col-md-2 offset-md-1" id="radius">Radius</div>
+        <div class="col-md-2 offset-md-1" id="cost">Cost</div>
     </div>
 
     <!--row and columns for maps and search results-->
     <div class="row" id ="secondRow">
         <div class="col-4 offset-md-1" id="searchResults">   </div>
         <div class="col-4 offset-md-1" id="map"></div>
+    </div>
+
+    <div class="row" id ="selectedResults">
+        <div class="col-md-2" id="breakfastSelected"></div>
+        <div class="col-md-2 offset-md-1" id = "lunchSelected"></div>
+        <div class="col-md-2 offset-md-1" id="dinnerSelected"></div>
+        <div class="col-md-3 offset-md-1" id="sendResults"></div>
+
     </div>
 
 
