@@ -15,6 +15,7 @@ $(document).ready(function () {
 	var location;
 	var price;
 	var ratings;
+	var cuisine;
 
 
 	//ADD GOOGLE MAPS API HERE
@@ -27,18 +28,26 @@ $(document).ready(function () {
 	}
 	//ADD YELP API HERE
 	var yelpKey = 'hj3IEH41ZB9OxWnEi31vdifki_JQVxL3wGiDhvWLCBoQhNR5JzfAjlVtJs3jPM9ZvCThgbtwDF-kbqBuRHEYATvPrv82r4nH1_mAdl0gVe8EQuxB1jp7nm34HySsXHYx';
-	$.ajax({
-		xhrFields: {
-			withCredentials: true
-		},
-		beforeSend: function (xhr) {
-			xhr.setRequestHeader('Authorization', 'Bearer ' + yelpKey);
-		},
-		url: "https://api.yelp.com/v3/autocomplete?text=" + searchTerm + "/businesses/search?=" + searchTerm + "/location?=" + location + "/price?=" + price + "/rating?=" + ratings + "/limit?=5"
-	});
 
 	$('#search-btn').on('click', function () {
-		console.log($('option').val());
-		//logging only the first option value
-	})
+		searchTerm = $('.bld-selector').val();
+		location = $('#Location-search').val();
+		ratings = $('.ratings-selector').val();
+		price = $('.cost-selector').val();
+		cuisine = $('#cuisine-search').val();
+		console.log(searchTerm, location, ratings, price);
+		$.ajax({
+		 	xhrFields: {
+		 		withCredentials: true
+		 	},
+		 	beforeSend: function (xhr) {
+		 		xhr.setRequestHeader('Authorization: Bearer ' + yelpKey);
+		 	},
+		 	url: "https://api.yelp.com/v3/businesses/search?=" + searchTerm + "/location?=" + location + "/price?=" + price + "/rating?=" + ratings + "/limit?=5",
+			method: 'GET',
+			dataType: 'json',
+		}).then(function (response) {
+			console.log(response);
+		})
+	});
 })
