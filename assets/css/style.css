@@ -1,0 +1,51 @@
+
+#firstRow{
+    margin-left:190px;
+}
+
+#secondRow{
+    margin-left:190px;
+}
+
+#bld-selector{
+    width: 40px;
+    background-color: grey;
+    color:white;
+    margin-top:20px;
+    height: 70px;
+    
+}
+
+#ratings{
+    width: 40px;
+    background-color: grey;
+    color:white;
+    margin-top:20px;
+}
+
+#radius{
+    width: 40px;
+    background-color: grey;
+    color:white;
+    margin-top:20px;
+}
+#cost{
+    width:40px;
+    background-color: grey;
+    color:white;
+    margin-top:20px;
+}
+
+#searchResults{
+    margin-top:20px;
+    width:400px;
+    height:400px;
+    background:gray;
+}
+#map{
+    margin-top:20px;
+    width:400px;
+    height:400px;
+    background:gray;
+}
+
