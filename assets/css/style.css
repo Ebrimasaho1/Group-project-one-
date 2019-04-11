@@ -1,3 +1,22 @@
+.search-parameters {
+    display: inline-block;
+    margin-bottom: auto;
+
+}
+
+
+#search-param-contain{
+    /* text-align: center; */
+    display: flex;
+    justify-content: space-between;
+}
+
+#generate-div{
+    display:block;
+}
+
+
+
 
 #firstRow{
     margin-left:190px;
