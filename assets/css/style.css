@@ -14,6 +14,7 @@
 }
 
 .bottom-row {
+    margin-top: 20px;
     margin-bottom: 20px;
 }
 
@@ -23,7 +24,7 @@
     ID Selectors
 */
 #bruncher-sm-logo {
-    max-height: 5vw;
+    max-height: 90px;
     display:block;
 }
 
@@ -39,24 +40,24 @@
 }
 
 #search-results-div{
-    margin-top:20px;
+    margin-top:10px;
     /* width:400px; */
     /* height:400px; */
     /* background:gray; */
 }
 #map-div{
-    margin-top:20px;
+    margin-top:10px;
     /* width:400px; */
     /* height:400px; */
     /* background:gray; */
 }
 
 #search-results-list{
-    max-height: 42vw;
+    max-height: 29vw;
 }
 
 #result-map {
-    max-height: 38vw;
+    max-height: 29vw;
 }
 
 
