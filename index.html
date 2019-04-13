@@ -1,131 +1,139 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <!--library referecnces-->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Document</title>
+        <!--library referecnces-->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-
-</head>
-
-<body>
-
-    <div class="container">
-        <!--Inserting bootstrap grids for user selections-->
-        <div class="row">
-            <div class="col-sm-1">
-                <!-- Logo Here -->
-            </div>
-            <div class="col-sm-11" id="search-param-contain">
-                <h4>Filters</h4>
-                <!-- Search Parameter fields -->
-                <div class="search-parameters" id="mealtime-div">
-                    <p>By Meal-Time:</p>
-                    <select class="bld-selector">
-                        <option value="breakfast">Breakfast</option>
-                        <option value="lunch">Lunch</option>
-                        <option value="dinner">Dinner</option>
-                    </select>
+        <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+        <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        
+    </head>
+    
+    <body>
+        
+        <div class="container">
+            <!--Inserting bootstrap grids for user selections-->
+            <div class="row">
+                <div class="col-sm-1">
+                    <!-- Logo Here -->
                 </div>
-                <div class="search-parameters" id="food-search-div">
-                    <p>By Cuisine</p>
-                    <div class="form-group">
-                        <!-- <label for="cuisine-search">Cuisine</label> -->
-                        <input type="text" class="form-control" id="cuisine-search" placeholder="Omelette">
+                <div class="col-sm-11" id="search-param-contain">
+                    <h4>Filters</h4>
+                    <!-- Search Parameter fields -->
+                    <div class="search-parameters" id="mealtime-div">
+                        <p>By Meal-Time:</p>
+                        <select class="bld-selector">
+                            <option value="breakfast">Breakfast</option>
+                            <option value="lunch">Lunch</option>
+                            <option value="dinner">Dinner</option>
+                        </select>
                     </div>
-                </div>
-                <div class="search-parameters" id="near-div">
-                    <p>By Location:</p>
-                    <div class="form-group">
-                        <!-- <label for="cuisine-search"></label> -->
-                        <input type="text" class="form-control" id="Location-search"
+                    <div class="search-parameters" id="food-search-div">
+                        <p>By Cuisine</p>
+                        <div class="form-group">
+                            <!-- <label for="cuisine-search">Cuisine</label> -->
+                            <input type="text" class="form-control" id="cuisine-search" placeholder="Omelette">
+                        </div>
+                    </div>
+                    <div class="search-parameters" id="near-div">
+                        <p>By Location:</p>
+                        <div class="form-group">
+                            <!-- <label for="cuisine-search"></label> -->
+                            <input type="text" class="form-control" id="Location-search"
                             placeholder="Capital Hill, Seattle, WA">
+                        </div>
+                    </div>
+                    <div class="search-parameters" id="ratings-div">
+                        <p>By Ratings:</p>
+                        <select class="ratings-selector">
+                            <option value="1">1-Star</option>
+                            <option value="2">2-Star</option>
+                            <option value="3">3-Star</option>
+                            <option value="4">4-Star</option>
+                            <option value="5">5-Star</option>
+                        </select>
+                    </div>
+                    <div class="search-parameters" id="cost-div">
+                        <p>By Cost:</p>
+                        <select class="cost-selector">
+                            <option value="1">$</option>
+                            <option value="2">$$</option>
+                            <option value="3">$$$</option>
+                            <option value="4">$$$$</option>
+                        </select>
+                    </div>
+                    <div id="generate-div">
+                        <button class="button" id="search-btn">Search</button>
                     </div>
                 </div>
-                <div class="search-parameters" id="ratings-div">
-                    <p>By Ratings:</p>
-                    <select class="ratings-selector">
-                        <option value="1">1-Star</option>
-                        <option value="2">2-Star</option>
-                        <option value="3">3-Star</option>
-                        <option value="4">4-Star</option>
-                        <option value="5">5-Star</option>
-                    </select>
+            </div>
+            
+            <!--row and columns for maps and search results-->
+            <div class="row">
+                <div class="col-sm-6 " id="search-results-div">
+                    <!-- Search Results Display here -->
+                    <h2>Search Results</h2>
                 </div>
-                <div class="search-parameters" id="cost-div">
-                    <p>By Cost:</p>
-                    <select class="cost-selector">
-                        <option value="1">$</option>
-                        <option value="2">$$</option>
-                        <option value="3">$$$</option>
-                        <option value="4">$$$$</option>
-                    </select>
-                </div>
-                <div id="generate-div">
-                    <button class="button" id="search-btn">Search</button>
+                <div class="col-sm-6 " id="map-div">
+                    <!-- Map of Search Results here -->
+                    <h2>Google Map here</h2>
                 </div>
             </div>
-        </div>
-
-        <!--row and columns for maps and search results-->
-        <div class="row">
-            <div class="col-sm-6 " id="search-results-div">
-                <!-- Search Results Display here -->
-                <h2>Search Results</h2>
-            </div>
-            <div class="col-sm-6 " id="map-div">
-                <!-- Map of Search Results here -->
-                <h2>Google Map here</h2>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-sm-3">
-                <!-- Breakfast Selection here -->
-                <h4>Breakfast Selection here</h4>
-            </div>
-            <div class="col-sm-3">
-                <!-- Lunch Selection here -->
-                <h4>Lunch Selection here</h4>
-            </div>
-            <div class="col-sm-3">
-                <!-- Dinner Selection here -->
-                <h4>Dinner Selection here</h4>
-            </div>
-            <div class="col-sm-3">
-                <!-- Email sending section -->
-                <h4>Send to yourself:</h4>
-                
+            
+            <div class="row">
+                <div class="col-sm-3">
+                    <!-- Breakfast Selection here -->
+                    <h4>Breakfast Selection here</h4>
+                </div>
+                <div class="col-sm-3">
+                    <!-- Lunch Selection here -->
+                    <h4>Lunch Selection here</h4>
+                </div>
+                <div class="col-sm-3">
+                    <!-- Dinner Selection here -->
+                    <h4>Dinner Selection here</h4>
+                </div>
+                <div class="col-sm-3">
+                    <!-- Email sending section -->
+                    <h4>Send to yourself:</h4>
+                    
                     <!-- <p>By Cuisine</p> -->
                     <div class="form-group">
                         <label for="phone-input">Phone Number</label>
                         <input type="text" class="form-control" id="phone-input" placeholder="###-###-####">
-              
-                </div>
-                
+                        
+                    </div>
+                    
                     <!-- <p>By Cuisine</p> -->
                     <div class="form-group">
                         <label for="email-input">Email</label>
                         <input type="text" class="form-control" id="email-input" placeholder="brunchette@lunch.food">
                     </div>
-          
-                <button class="button" id="send-btn">Ship-it</button>
-
+                    
+                    <button class="button" id="send-btn">Ship-it</button>
+                    
+                </div>
             </div>
         </div>
-    </div>
-
-
-    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDdXD6fpOa3Vf_dGsll4gHfthMVjuT52WM&callback=initMap" async defer></script> -->
-    <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="assets/javascript/app.js"></script>
-</body>
-
-</html>
+        <script>
+            //ADD GOOGLE MAPS API HERE
+            var map;
+            function initMap() {
+                map = new google.maps.Map(document.getElementById('map-div'), {
+                    center: { lat: -34.397, lng: 150.644 },
+                    zoom: 8
+                });
+            }
+        </script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDdXD6fpOa3Vf_dGsll4gHfthMVjuT52WM&callback=initMap" async defer></script>
+        <script src="assets/javascript/app.js"></script>
+    </body>
+    
+    </html>
+    
