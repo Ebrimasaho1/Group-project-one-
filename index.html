@@ -1,16 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <!--library referecnces-->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Document</title>
+        <!--library referecnces-->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-
+        <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+        <!-- Icon for website -->
+        <link rel="shortcut icon" type="image/x-icon" href="assets/images/bruncher-logo-2.PNG" />
+        <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        
 </head>
 
 <body>
@@ -18,8 +23,9 @@
     <div class="container">
         <!--Inserting bootstrap grids for user selections-->
         <div class="row">
-            <div class="col-sm-1">
+            <div class="col-sm-1" id="logo-contain">
                 <!-- Logo Here -->
+                <img src="assets/images/bruncher-logo-2.PNG" alt="bruncher-logo" id="bruncher-sm-logo">
             </div>
             <div class="col-sm-11" id="search-param-contain">
                 <h4>Filters</h4>
@@ -78,14 +84,14 @@
             <div class="col-sm-6 " id="search-results-div">
                 <!-- Search Results Display here -->
                 <h2>Search Results</h2>
+                <img src="assets/images/map-result-list.PNG" alt="search-results-list" id="search-results-list">
             </div>
             <div class="col-sm-6 " id="map-div">
                 <!-- Map of Search Results here -->
-                <h2>Google Map here</h2>
             </div>
         </div>
 
-        <div class="row">
+        <div class="row bottom-row">
             <div class="col-sm-3">
                 <!-- Breakfast Selection here -->
                 <h4>Breakfast Selection here</h4>
@@ -123,12 +129,10 @@
         </div>
     </div>
 
-
-    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDdXD6fpOa3Vf_dGsll4gHfthMVjuT52WM&callback=initMap" async defer></script> -->
-    <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="assets/javascript/map.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDdXD6fpOa3Vf_dGsll4gHfthMVjuT52WM&callback=initMap" async defer></script>
     <script src="assets/javascript/app.js"></script>
+    
 </body>
 
 </html>

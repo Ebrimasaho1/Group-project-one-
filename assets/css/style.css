@@ -1,100 +1,63 @@
+/*  
+    ELEMENT Selector
+*/
+
+
+
+/* 
+    CLASS Selector
+*/
+
 .search-parameters {
     display: inline-block;
     margin-bottom: auto;
-
 }
 
+.bottom-row {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+
+
+/* 
+    ID Selectors
+*/
+#bruncher-sm-logo {
+    max-height: 90px;
+    display:block;
+}
 
 #search-param-contain{
     /* text-align: center; */
     display: flex;
     justify-content: space-between;
+    padding: 0px 30px;
 }
 
 #generate-div{
     display:block;
 }
 
-
-
-
-#firstRow{
-    margin-left:220px;
+#search-results-div{
+    margin-top:10px;
+    /* width:400px; */
+    /* height:400px; */
+    /* background:gray; */
+}
+#map-div{
+    margin-top:10px;
+    /* width:400px; */
+    /* height:400px; */
+    /* background:gray; */
 }
 
-#secondRow{
-    margin-left:100px;
+#search-results-list{
+    max-height: 29vw;
 }
 
-#bld-selector{
-    width: 40px;
-    background-color: grey;
-    color:white;
-    margin-top:20px;
-    height: 70px;   
+#result-map {
+    max-height: 29vw;
 }
 
-#ratings{
-    width: 40px;
-    background-color: grey;
-    color:white;
-    margin-top:20px;
-}
-
-#radius{
-    width: 40px;
-    background-color: grey;
-    color:white;
-    margin-top:20px;
-}
-#cost{
-    width:40px;
-    background-color: grey;
-    color:white;
-    margin-top:20px;
-}
-
-#searchResults{
-    margin-top:20px;
-    width:400px;
-    height:400px;
-    background:gray;
-}
-#map{
-    margin-top:20px;
-    width:400px;
-    height:400px;
-    background:gray;
-}
-.reviewOption{
-    width:100%;
-}
-.bld-selector{
-    width:100%;
-}
-
-#selectedResults{
-margin-left:120px;
-}
-
-#breakfastSelected{
-    margin-top:20px;
-    height:100px;
-    background-color: grey;
-}
-#lunchSelected{
-    margin-top:20px;
-    height:100px;
-    background-color: grey;
-}
-#dinnerSelected{
-    margin-top:20px;
-    height:100px;
-    background-color: grey;
-}
-#sendResults{
-    margin-top:20px;
-    height:100px;
-    background-color: grey;
-}
 
