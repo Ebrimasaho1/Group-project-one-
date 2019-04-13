@@ -55,13 +55,14 @@
                 </div>
                 <div class="search-parameters" id="ratings-div">
                     <p>By Ratings:</p>
-                    <select class="ratings-selector">
+                    <select class="ratings-selector" id = "ratingsVal">
                         <option value="1">1-Star</option>
                         <option value="2">2-Star</option>
                         <option value="3">3-Star</option>
                         <option value="4">4-Star</option>
                         <option value="5">5-Star</option>
                     </select>
+                    <p id=ratingsErr></p>
                 </div>
                 <div class="search-parameters" id="cost-div">
                     <p>By Cost:</p>
@@ -111,16 +112,18 @@
                     <div class="form-group">
                         <label for="phone-input">Phone Number</label>
                         <input type="text" class="form-control" id="phone-input" placeholder="###-###-####">
-              
+                        <button class="button" id="phone-sub" onclick = "phoneValidate()">Ship-it</button>
                 </div>
                 
                     <!-- <p>By Cuisine</p> -->
                     <div class="form-group">
                         <label for="email-input">Email</label>
                         <input type="text" class="form-control" id="email-input" placeholder="brunchette@lunch.food">
+                        <button class="button" id="email-sub" onclick = "emailValidate()">Ship-it</button>
                     </div>
-          
-                <button class="button" id="send-btn">Ship-it</button>
+                    <!--P tag to hold error message-->
+                    <p id = "errMessage"></p>
+                
 
             </div>
         </div>
