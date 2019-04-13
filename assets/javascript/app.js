@@ -30,19 +30,20 @@ $(document).ready(function () {
     
     // "https://api.yelp.com/v3/businesses/search?=" + searchTerm + "/location?=" + location + "/price?=" + price + "/rating?=" + ratings + "/limit?=5"
 
-    var yelpURL = "https://api.yelp.com/v3/businesses/search?=" + searchTerm;
+    var yelpURL = "https://api.yelp.com/v3/businesses/search?term=" + searchTerm;
 
     if(cuisine != '') {
       // Case where user wnats a specific cuisine in the Meal-Time
       yelpURL += (' ' + cuisine);
     }
     if(location != ''){
-      yelpURL += ('/location?=' + location);
+      yelpURL += ('&location=' + location);
     } else {
       // Autofill case
-      yelpURL += ('/location?=' + 'Seattle, WA');
+      yelpURL += ('&location=' + 'Seattle');
     }
-    yelpURL += "/price?=" + price + "/rating?=" + ratings + "/limit?=5"
+    // yelpURL += "/price?=" + price + "/rating?=" + ratings + "/limit?=5"
+    yelpURL += "&price=" + price + "&limit=5"
 
     console.log(yelpURL);
     
@@ -53,7 +54,7 @@ $(document).ready(function () {
 		 		withCredentials: true
 		 	},
 		 	beforeSend: function (xhr) {
-		 		xhr.setRequestHeader('Authorization', 'Bearer ' + yelpKey);
+		 		xhr.setRequestHeader('Authorization',' Bearer ' + yelpKey);
 		 	},
 		 	url: yelpURL,
       dataType: 'jsonp'
