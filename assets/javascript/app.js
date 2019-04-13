@@ -30,8 +30,8 @@ $(document).ready(function () {
     
     // "https://api.yelp.com/v3/businesses/search?=" + searchTerm + "/location?=" + location + "/price?=" + price + "/rating?=" + ratings + "/limit?=5"
 
-    var yelpURL = "https://api.yelp.com/v3/businesses/search?term=" + searchTerm;
-
+    var yelpURL = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=" + searchTerm;
+    
     if(cuisine != '') {
       // Case where user wnats a specific cuisine in the Meal-Time
       yelpURL += (' ' + cuisine);
@@ -50,14 +50,17 @@ $(document).ready(function () {
 
 		$.ajax({
       method: 'GET', 
-      xhrFields: {
-		 		withCredentials: true
-		 	},
-		 	beforeSend: function (xhr) {
-		 		xhr.setRequestHeader('Authorization',' Bearer ' + yelpKey);
-		 	},
+      // xhrFields: {
+		 	// 	withCredentials: true
+		 	// },
+		 	// beforeSend: function (xhr) {
+		 	// 	xhr.setRequestHeader('Authorization',' Bearer ' + yelpKey);
+       // },
+      headers: {
+        "Authorization": `Bearer ${yelpKey}`
+      },
 		 	url: yelpURL,
-      dataType: 'jsonp'
+      // dataType: 'jsonp'
       
 		}).then(function (response) {
       console.log('Querying Yelp now...');
