@@ -10,6 +10,14 @@ $(document).ready(function () {
 	};
 	firebase.initializeApp(config);
 
+	//ADD VARIABLES FOR APP HERE
+	var searchTerm;
+	var location;
+	var price;
+	var ratings;
+	var cuisine;
+
+
 	//ADD GOOGLE MAPS API HERE
 	var map;
 	function initMap() {
@@ -18,16 +26,48 @@ $(document).ready(function () {
 			zoom: 8
 		});
 	}
-	//ADD YELP API HERE
-	var yelpKey = 'hj3IEH41ZB9OxWnEi31vdifki_JQVxL3wGiDhvWLCBoQhNR5JzfAjlVtJs3jPM9ZvCThgbtwDF-kbqBuRHEYATvPrv82r4nH1_mAdl0gVe8EQuxB1jp7nm34HySsXHYx';
-	$.ajax({
-		xhrFields: {
-			withCredentials: true
-		},
-		beforeSend: function (xhr) {
-			xhr.setRequestHeader('Authorization', 'Bearer ' + yelpKey);
-		},
-		url: "https://api.yelp.com/v3/autocomplete?text=" + searchTerm + "/businesses/search?=" + searchTerm + "/location?=" + location + "/price?=" + price + "/limit?=5"
+
+	// search button to initiate 
+	$('#search-btn').on('click', function () {
+		searchTerm = $('.bld-selector').val();
+		console.log(searchTerm);
+		
+		location = $('#Location-search').val();
+
+		console.log(location);
+		
+		ratings = $('.ratings-selector').val();
+		console.log(ratings);
+		
+		price = $('.cost-selector').val();
+		console.log(price);
+		
+		cuisine = $('#cuisine-search').val();
+		console.log(cuisine);
+		
+
+		//Client ID
+		// xascU5ugK2Ug2q-JjxjZQQ
+
+		//ADD YELP API HERE
+		var queryURL = 'p_8oTalIkZpUAr2YHAezKSGLi08fBObQUd1OYhnnVq9NH8kMNK-nmqgrvftLHXLix9FirSJqPp9Ejh2zpzftSkhxl3-Tn64dXLgU40eJG5otnRLpclSJCzL8mjCxXHYx';
+
+		$.ajax({
+			xhrFields: {
+				withCredentials: true
+			},
+			beforeSend: function (xhr) {
+				xhr.setRequestHeader('Authorization: Bearer ' + queryURL);
+			},
+			url: "https://api.yelp.com/v3/businesses/search?term=" + searchTerm + "&/location?=" + location + "&/price?=" + price + "&/rating?=" + ratings + "/limit?=5",
+			method: 'GET',
+			dataType: 'json',
+		}).then(function (response) {
+			console.log("hjhbkj");
+
+
+		})
+		//searchparam()
 	});
 })
 
@@ -72,7 +112,6 @@ function emailValidate() {
 		document.getElementById("errMessage").innerHTML = text;
 		return false;
 	}
-
 	if (email.charAt(email.length - 4) != "." && email.charAt(email.length - 3) != ".") {
 		var text = "Incorrect location of '.'";
 		document.getElementById("errMessage").innerHTML = text;
@@ -81,9 +120,14 @@ function emailValidate() {
 	else {
 		var text = "Success";
 		document.getElementById("errMessage").innerHTML = text;
-
-
 	}
-
-
 }
+
+// function searchparam(){
+// 	var ratingsValidate = document.getElementById("ratingsVal").value;
+
+// 	if (ratingsValidate < 1 || ratingsValidate > 5){
+// 		var text = "ratings should be between 1-5";
+// 		document.getElementById("ratingsErr").innerHTML = text;
+// 	}
+// }
