@@ -16,16 +16,7 @@ $(document).ready(function () {
 	var price;
 	var ratings;
 	var cuisine;
-
-
-	//ADD GOOGLE MAPS API HERE
-	var map;
-	function initMap() {
-		map = new google.maps.Map(document.getElementById('map'), {
-			center: { lat: -34.397, lng: 150.644 },
-			zoom: 8
-		});
-	}
+	
 	//ADD YELP API HERE
 	var yelpKey = 'hj3IEH41ZB9OxWnEi31vdifki_JQVxL3wGiDhvWLCBoQhNR5JzfAjlVtJs3jPM9ZvCThgbtwDF-kbqBuRHEYATvPrv82r4nH1_mAdl0gVe8EQuxB1jp7nm34HySsXHYx';
 
