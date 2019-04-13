@@ -1,70 +1,65 @@
+/*  
+    ELEMENT Selector
+*/
+
+
+
+/* 
+    CLASS Selector
+*/
+
 .search-parameters {
     display: inline-block;
     margin-bottom: auto;
-
 }
 
+.bottom-row {
+    margin-bottom: 20px;
+}
+
+
+
+/* 
+    ID Selectors
+*/
+#bruncher-sm-logo {
+    max-height: 5vw;
+    display:block;
+}
 
 #search-param-contain{
     /* text-align: center; */
     display: flex;
     justify-content: space-between;
+    padding: 0px 30px;
 }
 
 #generate-div{
     display:block;
 }
 
-
-
-
-#firstRow{
-    margin-left:190px;
-}
-
-#secondRow{
-    margin-left:190px;
-}
-
-#bld-selector{
-    width: 40px;
-    background-color: grey;
-    color:white;
+#search-results-div{
     margin-top:20px;
-    height: 70px;
-    
+    /* width:400px; */
+    /* height:400px; */
+    /* background:gray; */
+}
+#map-div{
+    margin-top:20px;
+    /* width:400px; */
+    /* height:400px; */
+    /* background:gray; */
 }
 
-#ratings{
-    width: 40px;
-    background-color: grey;
-    color:white;
-    margin-top:20px;
+#search-results-list{
+    max-height: 42vw;
 }
 
-#radius{
-    width: 40px;
-    background-color: grey;
-    color:white;
-    margin-top:20px;
-}
-#cost{
-    width:40px;
-    background-color: grey;
-    color:white;
-    margin-top:20px;
+#result-map {
+    max-height: 38vw;
 }
 
-#searchResults{
-    margin-top:20px;
-    width:400px;
-    height:400px;
-    background:gray;
-}
-#map{
-    margin-top:20px;
-    width:400px;
-    height:400px;
-    background:gray;
-}
+/* 
+    Media Queries
+*/
 
