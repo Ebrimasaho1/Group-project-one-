@@ -1,15 +1,4 @@
 $(document).ready(function () {
-	// Initialize Firebase
-	var config = {
-		apiKey: "AIzaSyD_baRSHcSt4zUg6eUi6rupCghjOdB5jfQ",
-		authDomain: "group-project-one-f2dd4.firebaseapp.com",
-		databaseURL: "https://group-project-one-f2dd4.firebaseio.com",
-		projectId: "group-project-one-f2dd4",
-		storageBucket: "group-project-one-f2dd4.appspot.com",
-		messagingSenderId: "392304607656"
-	};
-	firebase.initializeApp(config);
-	var database = firebase.database();
 	//ADD VARIABLES FOR APP HERE
 	var searchTerm;
 	var location;
