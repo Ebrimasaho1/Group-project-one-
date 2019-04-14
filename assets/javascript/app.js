@@ -26,20 +26,48 @@ $(document).ready(function () {
 		ratings = $('.ratings-selector').val();
 		price = $('.cost-selector').val();
 		cuisine = $('#cuisine-search').val();
-		console.log(searchTerm, location, ratings, price);
+    console.log(searchTerm, location, ratings, price);
+    
+    // "https://api.yelp.com/v3/businesses/search?=" + searchTerm + "/location?=" + location + "/price?=" + price + "/rating?=" + ratings + "/limit?=5"
+
+    var yelpURL = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=" + searchTerm;
+    
+    if(cuisine != '') {
+      // Case where user wnats a specific cuisine in the Meal-Time
+      yelpURL += (' ' + cuisine);
+    }
+    if(location != ''){
+      yelpURL += ('&location=' + location);
+    } else {
+      // Autofill case
+      yelpURL += ('&location=' + 'Seattle');
+    }
+    // yelpURL += "/price?=" + price + "/rating?=" + ratings + "/limit?=5"
+    yelpURL += "&price=" + price + "&limit=5"
+
+    console.log(yelpURL);
+    
+
 		$.ajax({
-		 	xhrFields: {
-		 		withCredentials: true
-		 	},
-		 	beforeSend: function (xhr) {
-		 		xhr.setRequestHeader('Authorization: Bearer ' + yelpKey);
-		 	},
-		 	url: "https://api.yelp.com/v3/businesses/search?=" + searchTerm + "/location?=" + location + "/price?=" + price + "/rating?=" + ratings + "/limit?=5",
-			method: 'GET',
-			dataType: 'json',
+      method: 'GET', 
+      // xhrFields: {
+		 	// 	withCredentials: true
+		 	// },
+		 	// beforeSend: function (xhr) {
+		 	// 	xhr.setRequestHeader('Authorization',' Bearer ' + yelpKey);
+       // },
+      headers: {
+        "Authorization": `Bearer ${yelpKey}`
+      },
+		 	url: yelpURL,
+      // dataType: 'jsonp'
+      
 		}).then(function (response) {
+      console.log('Querying Yelp now...');
 			console.log(response);
-		})
+		}).catch(function (error) {
+      console.log(error);
+    })
 	});
 	
 })
