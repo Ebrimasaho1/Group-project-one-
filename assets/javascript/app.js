@@ -45,7 +45,6 @@ $(document).ready(function () {
 
     console.log(yelpURL);
     
-
 		$.ajax({
       method: 'GET', 
       headers: {
