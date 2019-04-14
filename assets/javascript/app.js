@@ -9,7 +9,7 @@ $(document).ready(function () {
 		messagingSenderId: "392304607656"
 	};
 	firebase.initializeApp(config);
-
+	var database = firebase.database();
 	//ADD VARIABLES FOR APP HERE
 	var searchTerm;
 	var location;
@@ -27,8 +27,6 @@ $(document).ready(function () {
 		price = $('.cost-selector').val();
 		cuisine = $('#cuisine-search').val();
     console.log(searchTerm, location, ratings, price);
-    
-    // "https://api.yelp.com/v3/businesses/search?=" + searchTerm + "/location?=" + location + "/price?=" + price + "/rating?=" + ratings + "/limit?=5"
 
     var yelpURL = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=" + searchTerm;
     
@@ -50,21 +48,15 @@ $(document).ready(function () {
 
 		$.ajax({
       method: 'GET', 
-      // xhrFields: {
-		 	// 	withCredentials: true
-		 	// },
-		 	// beforeSend: function (xhr) {
-		 	// 	xhr.setRequestHeader('Authorization',' Bearer ' + yelpKey);
-       // },
       headers: {
         "Authorization": `Bearer ${yelpKey}`
       },
 		 	url: yelpURL,
-      // dataType: 'jsonp'
       
 		}).then(function (response) {
       console.log('Querying Yelp now...');
 			console.log(response);
+			database.ref().child('/yelp/businesses').set(response.businesses);
 		}).catch(function (error) {
       console.log(error);
     })
