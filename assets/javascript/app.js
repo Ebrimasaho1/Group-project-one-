@@ -65,6 +65,7 @@ $(document).ready(function () {
 		}).then(function (response) {
       console.log('Querying Yelp now...');
 			console.log(response);
+			searchResults(response);
 		}).catch(function (error) {
       console.log(error);
     })
@@ -101,6 +102,7 @@ function phoneValidate() {
 		var text = "Success";
 		document.getElementById("errMessage").innerHTML = text;
 	}
+	phoneData();
 }
 
 
@@ -123,4 +125,43 @@ function emailValidate() {
 		var text = "Success";
 		document.getElementById("errMessage").innerHTML = text;
 	}
+	emailData();
 }
+
+// Storing phone and email into local storage
+function phoneData(){
+$("#phone-input").each(function(){
+	var phoneNum = $(this).val();
+	localStorage.setItem(phoneNum, JSON.stringify(phoneNum));
+});
+}
+
+function emailData(){
+$("#email-input").each(function(){
+var emailAdd = $(this).val();
+localStorage.setItem(emailAdd,JSON.stringify(emailAdd));
+});
+
+}
+
+//displaying search results in div
+function searchResults(data){
+	//console.log(data);
+	
+	for (var i = 0 ; i <= 5; i++){
+		$("#search-results-div").append('<p id ="clickResult">' + data.businesses[i].name + '<p>');
+		$("#search-results-div").append('<p id ="clickResult">' + data.businesses[i].rating + '<p>');
+		$("#search-results-div").append('<p id ="clickResult">' + data.businesses[i].location.display_address[0] + data.businesses[i].location.display_address[1] + '<p>');
+		$("#search-results-div").append('<p id ="clickResult">' + data.businesses[i].price + '<p>');
+		$("#search-results-div").append(`<img src = "${data.businesses[i].image_url}" class="resultImg" id ="clickResult">`);
+	}
+}
+
+//logic is ready to be implemented for clicking the search results and display it in maps
+
+$("#search-results-div").on("click", function(event){
+console.log(event);
+if (event.target.id === "clickResult"){
+	//logic for what should happen after clicking search results
+}
+});
