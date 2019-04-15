@@ -1,15 +1,4 @@
 $(document).ready(function () {
-	// Initialize Firebase
-	var config = {
-		apiKey: "AIzaSyD_baRSHcSt4zUg6eUi6rupCghjOdB5jfQ",
-		authDomain: "group-project-one-f2dd4.firebaseapp.com",
-		databaseURL: "https://group-project-one-f2dd4.firebaseio.com",
-		projectId: "group-project-one-f2dd4",
-		storageBucket: "group-project-one-f2dd4.appspot.com",
-		messagingSenderId: "392304607656"
-	};
-	firebase.initializeApp(config);
-
 	//ADD VARIABLES FOR APP HERE
 	var searchTerm;
 	var location;
@@ -27,8 +16,6 @@ $(document).ready(function () {
 		price = $('.cost-selector').val();
 		cuisine = $('#cuisine-search').val();
     console.log(searchTerm, location, ratings, price);
-    
-    // "https://api.yelp.com/v3/businesses/search?=" + searchTerm + "/location?=" + location + "/price?=" + price + "/rating?=" + ratings + "/limit?=5"
 
     var yelpURL = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=" + searchTerm;
     
@@ -47,24 +34,17 @@ $(document).ready(function () {
 
     console.log(yelpURL);
     
-
 		$.ajax({
       method: 'GET', 
-      // xhrFields: {
-		 	// 	withCredentials: true
-		 	// },
-		 	// beforeSend: function (xhr) {
-		 	// 	xhr.setRequestHeader('Authorization',' Bearer ' + yelpKey);
-       // },
       headers: {
         "Authorization": `Bearer ${yelpKey}`
       },
 		 	url: yelpURL,
-      // dataType: 'jsonp'
       
 		}).then(function (response) {
       console.log('Querying Yelp now...');
 			console.log(response);
+			database.ref().child('/yelp/businesses').set(response.businesses);
 		}).catch(function (error) {
       console.log(error);
     })
