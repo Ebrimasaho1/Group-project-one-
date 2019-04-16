@@ -18,7 +18,18 @@ function initMap(searchResultMap) {
         zoom: 8
     });
 };
-
-database.ref().child('/yelp/businesses').on('value', function (snap) {
+database.ref().child('/yelp/businesses/0').on('value', function (snap) {
     console.log(snap.val());
-})
+    lat = snap.val().coordinates.latitude;
+    long = snap.val().coordinates.longitude;
+    businessName = snap.val().alias;
+    console.log(lat, long, businessName);
+});
+
+var marker = new google.maps.Marker({
+    position: {lat: lat, lng: long},
+    title: businessName
+});
+
+// To add the marker to the map, call setMap();
+marker.setMap(map);
