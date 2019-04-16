@@ -1,15 +1,4 @@
 $(document).ready(function () {
-	// Initialize Firebase
-	var config = {
-		apiKey: "AIzaSyD_baRSHcSt4zUg6eUi6rupCghjOdB5jfQ",
-		authDomain: "group-project-one-f2dd4.firebaseapp.com",
-		databaseURL: "https://group-project-one-f2dd4.firebaseio.com",
-		projectId: "group-project-one-f2dd4",
-		storageBucket: "group-project-one-f2dd4.appspot.com",
-		messagingSenderId: "392304607656"
-	};
-	firebase.initializeApp(config);
-
 	//ADD VARIABLES FOR APP HERE
 	var searchTerm;
 	var location;
@@ -27,8 +16,6 @@ $(document).ready(function () {
 		price = $('.cost-selector').val();
 		cuisine = $('#cuisine-search').val();
     console.log(searchTerm, location, ratings, price);
-    
-    // "https://api.yelp.com/v3/businesses/search?=" + searchTerm + "/location?=" + location + "/price?=" + price + "/rating?=" + ratings + "/limit?=5"
 
     var yelpURL = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=" + searchTerm;
     
@@ -47,39 +34,33 @@ $(document).ready(function () {
 
     console.log(yelpURL);
     
-
 		$.ajax({
       method: 'GET', 
-      // xhrFields: {
-		 	// 	withCredentials: true
-		 	// },
-		 	// beforeSend: function (xhr) {
-		 	// 	xhr.setRequestHeader('Authorization',' Bearer ' + yelpKey);
-       // },
       headers: {
         "Authorization": `Bearer ${yelpKey}`
       },
 		 	url: yelpURL,
-      // dataType: 'jsonp'
       
 		}).then(function (response) {
       console.log('Querying Yelp now...');
 			console.log(response);
 			searchResults(response);
+			database.ref().child('/yelp/businesses').set(response.businesses);
 		}).catch(function (error) {
       console.log(error);
     })
 	});
 	
-})
-		
+});
+
+
 
 //input validation for phone number and email
 //Phone validation
 function phoneValidate() {
 	var num = document.getElementById("phone-input").value;
-
-
+	
+	
 	if (isNaN(num)) {
 		var text = "Enter only numeric value";
 		document.getElementById("errMessage").innerHTML = text;
@@ -91,8 +72,8 @@ function phoneValidate() {
 		document.getElementById("errMessage").innerHTML = text;
 		return false;
 	}
-
-
+	
+	
 	if (num.charAt(0) != 2 && num.charAt(0) != 3 && num.charAt(0) != 4 && num.charAt(0) != 5 && num.charAt(0) != 6 && num.charAt(0) != 7 && num.charAt(0) != 8 && num.charAt(0) != 9) {
 		var text = "first digit must not be zero";
 		document.getElementById("errMessage").innerHTML = text;
@@ -109,7 +90,7 @@ function phoneValidate() {
 // email validation
 
 function emailValidate() {
-
+	
 	var email = document.getElementById("email-input").value;
 	if (email.indexOf('@') <= 0) {
 		var text = "@ character must be present";
@@ -144,6 +125,18 @@ localStorage.setItem("Email",emailAdd);
 
 }
 
+// SHIP IT CLICK FUNCTION FOR PHONE NUMMBER
+//Firebase
+$('#phone-sub').on('click', function () {
+	database.ref().child('/user/phone').set($('#phone-input').val());
+});
+
+// SHIP IT CLICK FUNCTION FOR EMAIL
+$('#email-sub').on('click', function () {
+	database.ref().child('/user/email').set($('#email-input').val());
+})
+
+
 //displaying search results in div
 function searchResults(data){
 	console.log(data);
@@ -169,3 +162,4 @@ if (event.target.dataset.id){
 	
 }
 });
+
