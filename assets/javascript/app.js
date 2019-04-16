@@ -45,7 +45,16 @@ $(document).ready(function () {
 		}).then(function (response) {
       console.log('Querying Yelp now...');
 			console.log(response);
-			searchResults(response);
+			// searchResults(response);
+
+			resultsArray = response.businesses;
+			console.log(resultsArray);
+			
+
+			for (i = 0; i < response.businesses.length; i++ ){
+				searchResults(response.businesses[i], "search-results-div");
+			}
+
 			database.ref().child('/yelp/businesses').set(response.businesses);
 		}).catch(function (error) {
       console.log(error);
@@ -140,35 +149,39 @@ $('#email-sub').on('click', function () {
 //
 
 //displaying search results in div
-function searchResults(data){
+function searchResults(data, targetDiv){
 	console.log(data);
 	
-	for (var i = 0 ; i<5; i++){
+	// for (var i = 0 ; i<5; i++){
 		var restDiv = $("<div class='restaurants' data-id="+ i +">")
-		restDiv.append('<p class ="restaurant-name" >' + data.businesses[i].name + '<p>');
-		restDiv.append('<p class ="restaurant-rating" >' + data.businesses[i].rating + '<p>');
-		restDiv.append('<p class ="restaurant-address"  >' + data.businesses[i].location.display_address[0] + data.businesses[i].location.display_address[1] + '<p>');
-		restDiv.append('<p class ="restaurant-price" >' + data.businesses[i].price + '<p>');
-		restDiv.append(`<img src = "${data.businesses[i].image_url}" class="restaurant-image">`);
-		$("#search-results-div").append(restDiv)
-	}
+		restDiv.append('<p class ="restaurant-name"  data-id='+ i +'>' + data.name + '<p>');
+		restDiv.append('<p class ="restaurant-rating"  data-id='+ i +'>' + data.rating + '<p>');
+		restDiv.append('<p class ="restaurant-address" data-id='+ i +' >' + data.location.display_address[0] + data.location.display_address[1] + '<p>');
+		restDiv.append('<p class ="restaurant-price" data-id='+ i +'>' + data.price + '<p>');
+		restDiv.append("<img src="+data.image_url+" class='restaurant-image' data-id=" + i +">");
+		// $("#search-results-div").append(restDiv)			
+		$("#" + targetDiv).append(restDiv)
+	// }
 }
 
 //logic is ready to be implemented for clicking the search results and display it in maps
 
 $(document).on("click",".restaurants", function(event){
+console.log(event);
 
-if (event.target.dataset.id){
+
 	//logic for what should happen after clicking search results
 	console.log(event.target.dataset.id);
 	
-}
+
 });
 
 
 // function for storing user selected meal place 
- // var mealTime = $()
+ 
 // function selectedResults(){
-	
+// 	for( var i = 0; i<resultsArray.length; i++){
+// 		if 
+// 	}
 // }
 
