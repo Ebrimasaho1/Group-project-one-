@@ -50,15 +50,16 @@ $(document).ready(function () {
     })
 	});
 	
-})
-		
+});
+
+
 
 //input validation for phone number and email
 //Phone validation
 function phoneValidate() {
 	var num = document.getElementById("phone-input").value;
-
-
+	
+	
 	if (isNaN(num)) {
 		var text = "Enter only numeric value";
 		document.getElementById("errMessage").innerHTML = text;
@@ -70,8 +71,8 @@ function phoneValidate() {
 		document.getElementById("errMessage").innerHTML = text;
 		return false;
 	}
-
-
+	
+	
 	if (num.charAt(0) != 2 && num.charAt(0) != 3 && num.charAt(0) != 4 && num.charAt(0) != 5 && num.charAt(0) != 6 && num.charAt(0) != 7 && num.charAt(0) != 8 && num.charAt(0) != 9) {
 		var text = "first digit must not be zero";
 		document.getElementById("errMessage").innerHTML = text;
@@ -87,7 +88,7 @@ function phoneValidate() {
 // email validation
 
 function emailValidate() {
-
+	
 	var email = document.getElementById("email-input").value;
 	if (email.indexOf('@') <= 0) {
 		var text = "@ character must be present";
@@ -104,3 +105,13 @@ function emailValidate() {
 		document.getElementById("errMessage").innerHTML = text;
 	}
 }
+
+// SHIP IT CLICK FUNCTION FOR PHONE NUMMBER
+$('#phone-sub').on('click', function () {
+	database.ref().child('/user/phone').set($('#phone-input').val());
+});
+
+// SHIP IT CLICK FUNCTION FOR EMAIL
+$('#email-sub').on('click', function () {
+	database.ref().child('/user/email').set($('#email-input').val());
+})
