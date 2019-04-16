@@ -4,7 +4,8 @@ $(document).ready(function () {
 	var location;
 	var price;
 	var ratings;
-	var cuisine;
+  var cuisine;
+  var resultsArray = [];
 
 		//ADD YELP API HERE
 		var yelpKey = 'hj3IEH41ZB9OxWnEi31vdifki_JQVxL3wGiDhvWLCBoQhNR5JzfAjlVtJs3jPM9ZvCThgbtwDF-kbqBuRHEYATvPrv82r4nH1_mAdl0gVe8EQuxB1jp7nm34HySsXHYx';
@@ -21,7 +22,7 @@ $(document).ready(function () {
     
     if(cuisine != '') {
       // Case where user wnats a specific cuisine in the Meal-Time
-      yelpURL += (' ' + cuisine);
+      yelpURL += ('&categories=' + cuisine);
     }
     if(location != ''){
       yelpURL += ('&location=' + location);
