@@ -16,7 +16,7 @@ $(document).ready(function () {
 		price = $('.cost-selector').val();
 		cuisine = $('#cuisine-search').val();
     console.log(searchTerm, location, ratings, price);
-
+		
     var yelpURL = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=" + searchTerm;
     
     if(cuisine != '') {
@@ -134,8 +134,9 @@ $('#phone-sub').on('click', function () {
 // SHIP IT CLICK FUNCTION FOR EMAIL
 $('#email-sub').on('click', function () {
 	database.ref().child('/user/email').set($('#email-input').val());
-})
+});
 
+//
 
 //displaying search results in div
 function searchResults(data){
@@ -162,4 +163,11 @@ if (event.target.dataset.id){
 	
 }
 });
+
+
+// function for storing user selected meal place 
+ // var mealTime = $()
+// function selectedResults(){
+	
+// }
 
