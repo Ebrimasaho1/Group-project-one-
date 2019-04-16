@@ -46,15 +46,12 @@
 
 #search-results-div{
     margin-top:10px;
-    /* width:400px; */
-    /* height:400px; */
-    /* background:gray; */
+    max-height: 570px;
+    overflow: scroll;
 }
 #map-div{
     margin-top:10px;
-    /* width:400px; */
-    /* height:400px; */
-    /* background:gray; */
+    height: 570px;
 }
 
 #search-results-list{
@@ -64,10 +61,17 @@
 #result-map {
     max-height: 29vw;
 }
-.resultImg{
+.restaurant-image{
     width: 50px;
     height: 50px;
-    float:right;
+    /*float:right;*/
+}
+.restaurants{
+    margin: 20px 0;
+    border:1px solid black;
+    -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
 }
 
 
