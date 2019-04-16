@@ -13,8 +13,8 @@ var database = firebase.database();
 //ADD GOOGLE MAPS API HERE
 var map;
 
-// var lat =  47.62541904760501;
-// var long = -152.33551025390625;
+ var lat =  47.62541904760501;
+ var long = -152.33551025390625;
 
 function initMap() {
     map = new google.maps.Map(document.getElementById('map-div'), {
@@ -30,7 +30,7 @@ database.ref().child('/yelp/businesses/0').on('value', function (snap) {
     console.log(lat, long, businessName);
 });
 
-var marker = new google.maps.Marker({
+     marker = new google.maps.Marker({
     position: {lat: lat, lng: long},
     title: businessName
 });
