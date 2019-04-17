@@ -7,16 +7,26 @@ hr {
     margin-bottom: 5px;
 }
 
-/* Colors for design.
-#C6E2FF  
-#9FC5E8
-#2588BA
-#001047
-#00BBFF*/
+/* Colors for design. */
+.just-listing-out-colors {
+    background-color: #C6E2FF;  
+    background-color: #9FC5E8;
+    background-color: #2588BA;
+    background-color: #001047;
+    background-color: #00BBFF;
+}
+
+body {
+    background-color: #9FC5E8;
+}
 
 /* 
     CLASS Selector
 */
+
+.container {
+    background-color: #C6E2FF;
+}
 
 .search-parameters {
     display: inline-block;
@@ -29,6 +39,7 @@ hr {
 }
 
 .restaurants{
+    background-color: white;
     margin: 20px 2.5%;
     border:1px solid black;
     -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
@@ -163,21 +174,44 @@ hr {
 /* 
     ID Selectors
 */
-
 #top-hr{
     margin-top: 5px;
+}
+
+#top-row {
+    background-color: #001047;
+    border-radius: 0px 0px 10px 10px;
+}
+
+#logo-contain{
+    border-radius: 10px;
 }
 
 #bruncher-sm-logo {
     max-height: 90px;
     display:block;
+    border-radius: 0px 0px 10px 10px;
 }
 
 #search-param-contain{
     /* text-align: center; */
     display: flex;
     justify-content: space-between;
-    padding: 0px 62px 0px 45px;
+    padding: 0px 70px 0px 45px;
+
+    color:white;
+}
+
+#bld-selector {
+    border-radius: 5px;
+}
+
+#ratings-selector {
+    border-radius: 5px;
+}
+
+#cost-selector {
+    border-radius: 5px;
 }
 
 #generate-div{
@@ -188,6 +222,8 @@ hr {
 #search-btn{
     position: absolute;
     bottom: 15px;
+    right: -57px;
+    border-radius: 5px;
 }
 
 #search-results-div{
@@ -203,6 +239,7 @@ hr {
     /* width:400px; */
     height:525px;
     /* background:gray; */
+    padding-right: 15px;
 }
 
 #search-results-list{

@@ -176,7 +176,7 @@ function searchResults(data, index, targetDiv, isSelect) {
 	// restDiv.css('position', 'relative');
 	
 	var restName = $("<div>");
-	restName.html("<strong>" + (index + 1) + ". " + data.name + "</strong>");
+	restName.html("<strong>" + (parseInt(index) + 1) + ". " + data.name + "</strong>");
 	restName.attr('data-id', '' + index);
 	// restName.css('position', 'absolute');
 
