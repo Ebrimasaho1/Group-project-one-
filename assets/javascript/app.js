@@ -69,7 +69,7 @@ $(document).ready(function () {
 			$("#search-results-div").empty();
 
 			for (i = 0; i < response.businesses.length; i++) {
-				searchResults(response.businesses[i], "search-results-div");
+				searchResults(response.businesses[i], i, "search-results-div", false);
 			}
 
 			database.ref().child('/yelp/businesses').set(response.businesses);
@@ -170,19 +170,83 @@ $('#email-sub').on('click', function () {
 //
 
 //displaying search results in div
-function searchResults(data, targetDiv) {
-	// console.log(data);
+function searchResults(data, index, targetDiv, isSelect) {
+	// Create the pieces to compose of a restaurant 'card'
+	var restDiv = $("<div class='restaurants' data-id=" + index + ">");
+	// restDiv.css('position', 'relative');
+	
+	var restName = $("<div>");
+	restName.html("<strong>" + (index + 1) + ". " + data.name + "</strong>");
+	restName.attr('data-id', '' + index);
+	// restName.css('position', 'absolute');
 
-	// for (var i = 0 ; i<5; i++){
-	var restDiv = $("<div class='restaurants' data-id=" + i + ">")
-	restDiv.append('<p class ="restaurant-name"  data-id=' + i + '>' + data.name + '<p>');
-	restDiv.append('<p class ="restaurant-rating"  data-id=' + i + '>' + data.rating + '<p>');
-	restDiv.append('<p class ="restaurant-address" data-id=' + i + ' >' + data.location.display_address[0] + data.location.display_address[1] + '<p>');
-	restDiv.append('<p class ="restaurant-price" data-id=' + i + '>' + data.price + '<p>');
-	restDiv.append("<img src=" + data.image_url + " class='restaurant-image' data-id=" + i + ">");
-	// $("#search-results-div").append(restDiv)			
+	var restRating = $("<img>");
+	restRating.html(data.rating);
+	var halfStar = data.rating;								// If half star, need to get the corred name for half stars (e.g. "4_half.png");
+	var doubleRate = data.rating * 2;
+	if(doubleRate % 2 === 1 ) {
+		halfStar = ((doubleRate - 1) / 2) + "_half";
+	}
+	restRating.attr('src', 'assets/images/yelp_stars/small_' + halfStar + '.png');
+	restRating.attr('data-id', '' + index);
+	// restRating.css('position', 'absolute');
+
+	var restAddress = $("<div>");
+	restAddress.html(data.location.display_address[0] + " " + data.location.display_address[1]);
+	restAddress.attr('data-id', '' + index);
+	// restAddress.css('position', 'absolute');
+
+	var restPrice = $("<div>");
+	restPrice.html("Price-Level: " + data.price);
+	restPrice.attr('data-id', '' + index);
+	// restPrice.css('position', 'absolute');
+
+	var reviewCount = $("<div>");
+	reviewCount.html("Reviews: " + data.review_count);
+	reviewCount.attr('data-id', '' + index);
+
+	var restImage = $("<div>");
+	restImage.css('background-image', "url('" + data.image_url + "')");
+	restImage.css('background-size', 'cover');
+	restImage.css('background-repeat', 'no-repeat');
+	restImage.css('background-position', '50% 50%');
+	// restImage.css('position', 'absolute');
+
+	var yelpTag = $("<img>");
+	// restImage.html();
+	yelpTag.attr('src', 'assets/images/Yelp_trademark_RGB.png');
+	yelpTag.attr('data-id', '' + index);
+	// yelpTag.css('position', 'absolute');
+
+	if (isSelect) {
+		restName.addClass("selected-restaurant-name");
+		restRating.addClass("selected-restaurant-rating");
+		restAddress.addClass("selected-restaurant-address");
+		restPrice.addClass("selected-restaurant-price");
+		reviewCount.addClass("selected-review-count");
+		restImage.addClass("selected-restaurant-image");
+		yelpTag.addClass("selected-yelp-tag");
+	} else {
+		restName.addClass("restaurant-name");
+		restRating.addClass("restaurant-rating");
+		restAddress.addClass("restaurant-address");
+		restPrice.addClass("restaurant-price");
+		reviewCount.addClass("review-count");
+		restImage.addClass("restaurant-image");
+		yelpTag.addClass("yelp-tag");
+	}
+
+	// append each piece to the restDiv
+	restDiv.append(restName);
+	restDiv.append(restRating);
+	restDiv.append(reviewCount);
+	restDiv.append(restAddress);
+	restDiv.append(restPrice);
+	restDiv.append(restImage);
+	restDiv.append(yelpTag);
+			
+	// Lastly, append restDiv to the target div where we want the entire card.
 	$("#" + targetDiv).append(restDiv)
-	// }
 }
 
 //logic is ready to be implemented for clicking the search results and display it in maps
@@ -201,30 +265,10 @@ $(document).on("click", ".restaurants", function (event) {
 	// Empty the previous selection
 	$("#" + searchTermGLOBAL + "-div").empty();
 
-	searchResults(selectedResult, searchTermGLOBAL + "-div");
+	console.log(selectedResult);
 
-	// switch(searchTerm) {
-	// 	case 'breakfast': 
-	// 		searchReuslts(selectedResult, searchTerm);
-	// 		break;
-	// 	case 'lunch':
+	searchResults(selectedResult, selectedResultIndex, searchTermGLOBAL + "-div", true);
 
-	// 		break;
-	// 	case 'dinner': 
-
-	// 		break;
-	// 	default:
-	// 		console.log("Something went wrong. Restaurant selected, but no meal-time was chosen.");
-	// 		break;
-	// }
 });
 
-
-// function for storing user selected meal place 
-
-// function selectedResults(){
-// 	for( var i = 0; i<resultsArray.length; i++){
-// 		if 
-// 	}
-// }
 

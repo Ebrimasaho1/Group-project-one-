@@ -79,32 +79,45 @@
             </div>
         </div>
 
+        <hr id="top-hr">
+
         <!--row and columns for maps and search results-->
         <div class="row">
-            <div class="col-sm-6 " id="search-results-div">
+            <div class="col-sm-7 " id="search-results-div">
                 <!-- Search Results Display here -->
                 <!-- <h2>Search Results</h2>
                 <img src="assets/images/map-result-list.PNG" alt="search-results-list" id="search-results-list"> -->
             </div>
-            <div class="col-sm-6 " id="map-div">
+            <div class="col-sm-5 " id="map-div">
                 <!-- Map of Search Results here -->
             </div>
         </div>
 
+        <hr>
+
         <div class="row bottom-row">
-            <div class="col-sm-3" id="breakfast-div">
+            <div class="col-sm-3 selected-divs">
                 <!-- Breakfast Selection here -->
-                <h4>Breakfast Selection here</h4>
+                <h4>Breakfast Selection</h4>
+                <div id="breakfast-div">
+                    <!-- Put Selected breakfast card here -->
+                </div>
             </div>
-            <div class="col-sm-3" id="lunch-div">
+            <div class="col-sm-3 selected-divs">
                 <!-- Lunch Selection here -->
-                <h4>Lunch Selection here</h4>
+                <h4>Lunch Selection</h4>
+                <div id="lunch-div">
+                    <!-- Put Selected lunch card here -->
+                </div>
             </div>
-            <div class="col-sm-3" id="dinner-div">
+            <div class="col-sm-3 selected-divs">
                 <!-- Dinner Selection here -->
-                <h4>Dinner Selection here</h4>
+                <h4>Dinner Selection</h4>
+                <div id="dinner-div">
+                    <!-- Put Selected dinner card here -->
+                </div>
             </div>
-            <div class="col-sm-3">
+            <div class="col-sm-3 selected-divs">
                 <!-- Email sending section -->
                 <h4>Send to yourself:</h4>
                 
@@ -116,7 +129,7 @@
                 </div>
                 
                     <!-- <p>By Cuisine</p> -->
-                    <div class="form-group">
+                    <div class="form-group" id="email-box">
                         <label for="email-input">Email</label>
                         <input type="text" class="form-control" id="email-input" placeholder="brunchette@lunch.food">
                         <button class="button" id="email-sub" onclick = "emailValidate()">Ship-it</button>
