@@ -1,66 +1,87 @@
-$(document).ready(function () {
 	//ADD VARIABLES FOR APP HERE
+	var searchTermGLOBAL;
+	// var location;
+	// var price;
+	// var ratings;
+	// var cuisine;
+	var resultsArray = [];
+
+
+
+$(document).ready(function () {
+	// //ADD VARIABLES FOR APP HERE
 	var searchTerm;
 	var location;
 	var price;
 	var ratings;
-  var cuisine;
-  var resultsArray = [];
+	var cuisine;
+	// var resultsArray = [];
 
-		//ADD YELP API HERE
-		var yelpKey = 'hj3IEH41ZB9OxWnEi31vdifki_JQVxL3wGiDhvWLCBoQhNR5JzfAjlVtJs3jPM9ZvCThgbtwDF-kbqBuRHEYATvPrv82r4nH1_mAdl0gVe8EQuxB1jp7nm34HySsXHYx';
+	//ADD YELP API HERE
+	var yelpKey = 'hj3IEH41ZB9OxWnEi31vdifki_JQVxL3wGiDhvWLCBoQhNR5JzfAjlVtJs3jPM9ZvCThgbtwDF-kbqBuRHEYATvPrv82r4nH1_mAdl0gVe8EQuxB1jp7nm34HySsXHYx';
 
 	$('#search-btn').on('click', function () {
+		// Prevent default auto load here:
+		event.preventDefault();
+
 		searchTerm = $('.bld-selector').val();
 		location = $('#Location-search').val();
 		ratings = $('.ratings-selector').val();
 		price = $('.cost-selector').val();
 		cuisine = $('#cuisine-search').val();
-    console.log(searchTerm, location, ratings, price);
-		
-    var yelpURL = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=" + searchTerm;
-    
-    if(cuisine != '') {
-      // Case where user wnats a specific cuisine in the Meal-Time
-      yelpURL += ('&categories=' + cuisine);
-    }
-    if(location != ''){
-      yelpURL += ('&location=' + location);
-    } else {
-      // Autofill case
-      yelpURL += ('&location=' + 'Seattle');
-    }
-    // yelpURL += "/price?=" + price + "/rating?=" + ratings + "/limit?=5"
-    yelpURL += "&price=" + price + "&limit=5"
+		console.log(searchTerm, location, ratings, price);
 
-    console.log(yelpURL);
-    
+		searchTermGLOBAL = searchTerm;
+
+		var yelpURL = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=" + searchTerm;
+
+		if (cuisine != '') {
+			// Case where user wnats a specific cuisine in the Meal-Time
+			yelpURL += ('&categories=' + cuisine);
+		}
+		if (location != '') {
+			yelpURL += ('&location=' + location);
+		} else {
+			// Autofill case
+			yelpURL += ('&location=' + 'Seattle');
+		}
+		// yelpURL += "/price?=" + price + "/rating?=" + ratings + "/limit?=5"
+		yelpURL += "&price=" + price + "&limit=5"
+
+		console.log(yelpURL);
+
 		$.ajax({
-      method: 'GET', 
-      headers: {
-        "Authorization": `Bearer ${yelpKey}`
-      },
-		 	url: yelpURL,
-      
+			method: 'GET',
+			headers: {
+				"Authorization": `Bearer ${yelpKey}`
+			},
+			url: yelpURL,
+
 		}).then(function (response) {
-      console.log('Querying Yelp now...');
+			console.log('Querying Yelp now...');
 			console.log(response);
 			// searchResults(response);
 
 			resultsArray = response.businesses;
 			console.log(resultsArray);
-			
 
-			for (i = 0; i < response.businesses.length; i++ ){
+			// Clear the contents of results
+			$("#search-results-div").empty();
+
+			for (i = 0; i < response.businesses.length; i++) {
 				searchResults(response.businesses[i], "search-results-div");
 			}
 
 			database.ref().child('/yelp/businesses').set(response.businesses);
+
+			console.log("Stop here");
 		}).catch(function (error) {
-      console.log(error);
-    })
+			console.log(error);
+		})
+
+		console.log(resultsArray);
 	});
-	
+
 });
 
 
@@ -69,8 +90,8 @@ $(document).ready(function () {
 //Phone validation
 function phoneValidate() {
 	var num = document.getElementById("phone-input").value;
-	
-	
+
+
 	if (isNaN(num)) {
 		var text = "Enter only numeric value";
 		document.getElementById("errMessage").innerHTML = text;
@@ -82,8 +103,8 @@ function phoneValidate() {
 		document.getElementById("errMessage").innerHTML = text;
 		return false;
 	}
-	
-	
+
+
 	if (num.charAt(0) != 2 && num.charAt(0) != 3 && num.charAt(0) != 4 && num.charAt(0) != 5 && num.charAt(0) != 6 && num.charAt(0) != 7 && num.charAt(0) != 8 && num.charAt(0) != 9) {
 		var text = "first digit must not be zero";
 		document.getElementById("errMessage").innerHTML = text;
@@ -100,7 +121,7 @@ function phoneValidate() {
 // email validation
 
 function emailValidate() {
-	
+
 	var email = document.getElementById("email-input").value;
 	if (email.indexOf('@') <= 0) {
 		var text = "@ character must be present";
@@ -120,18 +141,18 @@ function emailValidate() {
 }
 
 // Storing phone and email into local storage
-function phoneData(){
-$("#phone-input").each(function(){
-	var phoneNum = $(this).val();
-	localStorage.setItem("Phone", phoneNum);
-});
+function phoneData() {
+	$("#phone-input").each(function () {
+		var phoneNum = $(this).val();
+		localStorage.setItem("Phone", phoneNum);
+	});
 }
 
-function emailData(){
-$("#email-input").each(function(){
-var emailAdd = $(this).val();
-localStorage.setItem("Email",emailAdd);
-});
+function emailData() {
+	$("#email-input").each(function () {
+		var emailAdd = $(this).val();
+		localStorage.setItem("Email", emailAdd);
+	});
 
 }
 
@@ -149,36 +170,58 @@ $('#email-sub').on('click', function () {
 //
 
 //displaying search results in div
-function searchResults(data, targetDiv){
-	console.log(data);
-	
+function searchResults(data, targetDiv) {
+	// console.log(data);
+
 	// for (var i = 0 ; i<5; i++){
-		var restDiv = $("<div class='restaurants' data-id="+ i +">")
-		restDiv.append('<p class ="restaurant-name"  data-id='+ i +'>' + data.name + '<p>');
-		restDiv.append('<p class ="restaurant-rating"  data-id='+ i +'>' + data.rating + '<p>');
-		restDiv.append('<p class ="restaurant-address" data-id='+ i +' >' + data.location.display_address[0] + data.location.display_address[1] + '<p>');
-		restDiv.append('<p class ="restaurant-price" data-id='+ i +'>' + data.price + '<p>');
-		restDiv.append("<img src="+data.image_url+" class='restaurant-image' data-id=" + i +">");
-		// $("#search-results-div").append(restDiv)			
-		$("#" + targetDiv).append(restDiv)
+	var restDiv = $("<div class='restaurants' data-id=" + i + ">")
+	restDiv.append('<p class ="restaurant-name"  data-id=' + i + '>' + data.name + '<p>');
+	restDiv.append('<p class ="restaurant-rating"  data-id=' + i + '>' + data.rating + '<p>');
+	restDiv.append('<p class ="restaurant-address" data-id=' + i + ' >' + data.location.display_address[0] + data.location.display_address[1] + '<p>');
+	restDiv.append('<p class ="restaurant-price" data-id=' + i + '>' + data.price + '<p>');
+	restDiv.append("<img src=" + data.image_url + " class='restaurant-image' data-id=" + i + ">");
+	// $("#search-results-div").append(restDiv)			
+	$("#" + targetDiv).append(restDiv)
 	// }
 }
 
 //logic is ready to be implemented for clicking the search results and display it in maps
 
-$(document).on("click",".restaurants", function(event){
-console.log(event);
-
+$(document).on("click", ".restaurants", function (event) {
+	// Prevent default auto load here:
+	event.preventDefault();
 
 	//logic for what should happen after clicking search results
+	// 	We want to save that Card INTO the corresponding meal-time div 
 	console.log(event.target.dataset.id);
-	
 
+	var selectedResultIndex = event.target.dataset.id;
+	var selectedResult = resultsArray[selectedResultIndex];
+
+	// Empty the previous selection
+	$("#" + searchTermGLOBAL + "-div").empty();
+
+	searchResults(selectedResult, searchTermGLOBAL + "-div");
+
+	// switch(searchTerm) {
+	// 	case 'breakfast': 
+	// 		searchReuslts(selectedResult, searchTerm);
+	// 		break;
+	// 	case 'lunch':
+
+	// 		break;
+	// 	case 'dinner': 
+
+	// 		break;
+	// 	default:
+	// 		console.log("Something went wrong. Restaurant selected, but no meal-time was chosen.");
+	// 		break;
+	// }
 });
 
 
 // function for storing user selected meal place 
- 
+
 // function selectedResults(){
 // 	for( var i = 0; i<resultsArray.length; i++){
 // 		if 
