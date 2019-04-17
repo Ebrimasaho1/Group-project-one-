@@ -2,16 +2,31 @@
     ELEMENT Selector
 */
 
-/* Colors for design.
-#C6E2FF  
-#9FC5E8
-#2588BA
-#001047
-#00BBFF*/
+hr {
+    /* margin-top: 5px; */
+    margin-bottom: 5px;
+}
+
+/* Colors for design. */
+.just-listing-out-colors {
+    background-color: #C6E2FF;  
+    background-color: #9FC5E8;
+    background-color: #2588BA;
+    background-color: #001047;
+    background-color: #00BBFF;
+}
+
+body {
+    background-color: #9FC5E8;
+}
 
 /* 
     CLASS Selector
 */
+
+.container {
+    background-color: #C6E2FF;
+}
 
 .search-parameters {
     display: inline-block;
@@ -20,43 +35,211 @@
 
 .bottom-row {
     margin-top: 20px;
-    margin-bottom: 20px;
+    /* margin-bottom: 20px; */
 }
 
+.restaurants{
+    background-color: white;
+    margin: 20px 2.5%;
+    border:1px solid black;
+    -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    height: 160px;
+    width: 95%;
+    border-radius: 10px;
+    position: relative;
+}
+
+.restaurant-name {
+    max-height: 21px;
+    overflow: hidden;
+    position: absolute;
+    top: 15px;
+    left: 155px;
+
+}
+
+.restaurant-rating {
+    position: absolute;
+    top: 46px;
+    left: 155px;
+}
+
+.review-count {
+    position: absolute;
+    top: 40px;
+    left: 242px;
+}
+
+.restaurant-address {
+    max-height: 21px;
+    overflow: hidden;
+    position: absolute;
+    top: 68px;
+    left: 155px;
+}
+
+.restaurant-price {
+    position: absolute;
+    top: 96px;
+    left: 155px;
+}   
+
+.restaurant-image{
+    width: 130px;
+    height: 130px;
+    border-radius: 10px;
+    display: cover; 
+    /* float:right; */
+    
+    position: absolute;
+    top: 15px;
+    left: 15px;
+}
+
+.yelp-tag {
+    width: auto;
+    height: 40px;
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+}
+
+.selected-divs {
+    height: 260px;
+    max-height: 260px;
+
+    border-radius: 10px;
+}
+
+
+.selected-restaurant-name {
+    max-height: 21px;
+    overflow: hidden;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+.selected-restaurant-rating {
+    max-height: 21px;
+    overflow: hidden;
+    position: absolute;
+    top: 40px;
+    left: 10px;
+}
+
+.selected-review-count {
+    position: absolute;
+    top: 35px;
+    left: 94px;
+}
+
+.selected-restaurant-address {
+    max-height: 21px;
+    overflow: hidden;
+    position: absolute;
+    top: 60px;
+    left: 10px;
+}
+
+.selected-restaurant-price {
+    position: absolute;
+    top: 85px;
+    left: 10px;
+}   
+
+.selected-restaurant-image{
+    width: 100px;
+    height: 35px;
+    border-radius: 10px;
+    display: cover; 
+    /* float:right; */
+    
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+}
+
+.selected-yelp-tag {
+    width: auto;
+    height: 40px;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
 
 
 /* 
     ID Selectors
 */
+#top-hr{
+    margin-top: 5px;
+}
+
+#top-row {
+    background-color: #001047;
+    border-radius: 0px 0px 10px 10px;
+}
+
+#logo-contain{
+    border-radius: 10px;
+}
+
 #bruncher-sm-logo {
     max-height: 90px;
     display:block;
+    border-radius: 0px 0px 10px 10px;
 }
 
 #search-param-contain{
     /* text-align: center; */
     display: flex;
     justify-content: space-between;
-    padding: 0px 30px;
+    padding: 0px 70px 0px 45px;
+
+    color:white;
+}
+
+#bld-selector {
+    border-radius: 5px;
+}
+
+#ratings-selector {
+    border-radius: 5px;
+}
+
+#cost-selector {
+    border-radius: 5px;
 }
 
 #generate-div{
     display:block;
+    position: relative;
+}
+
+#search-btn{
+    position: absolute;
+    bottom: 15px;
+    right: -57px;
+    border-radius: 5px;
 }
 
 #search-results-div{
     margin-top:10px;
     /* width:400px; */
-    height:570px;
+    height:525px;
     /* background:gray; */
-    max-height: 570px;
+    max-height: 525px;
     overflow: scroll;
 }
 #map-div{
     margin-top:10px;
     /* width:400px; */
-    height:570px;
+    height:525px;
     /* background:gray; */
+    padding-right: 15px;
 }
 
 #search-results-list{
@@ -66,17 +249,10 @@
 #result-map {
     max-height: 29vw;
 }
-.restaurant-image{
-    width: 50px;
-    height: 50px;
-    /*float:right;*/
+
+#email-box {
+    margin: 0px;
 }
-.restaurants{
-    margin: 20px 0;
-    border:1px solid black;
-    -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
--moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
-}
+
 
 
