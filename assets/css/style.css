@@ -17,15 +17,26 @@ hr {
 }
 
 body {
-    background-color: #9FC5E8;
+    /*background-color: #9FC5E8;*/
+background-color:white;
+  -webkit-animation-name: example; /* Safari 4.0 - 8.0 */
+  -webkit-animation-duration: 4s; /* Safari 4.0 - 8.0 */
+  /* animation-name: example; */
+  /* animation-duration: 4s; */
+  animation: example 4s infinite;   
+  animation-direction: alternate;   
 }
-
+@keyframes example {
+    from {background-color: rgb(226, 101, 101);}
+    to {background-color:rgb(255, 199, 199);}
+  }
+  
 /* 
     CLASS Selector
 */
 
 .container {
-    background-color: #C6E2FF;
+    background-color: whitesmoke;
 }
 
 .search-parameters {
@@ -109,7 +120,8 @@ body {
 .selected-divs {
     height: 260px;
     max-height: 260px;
-
+    width: 20%;
+    /* background-color: white;     */
     border-radius: 10px;
 }
 
