@@ -13,6 +13,10 @@ var database = firebase.database();
 //ADD GOOGLE MAPS API HERE
 var map;
 var marker;
+var marker1;
+var marker2;
+var marker3;
+var marker4;
 var lat =  47.62541904760501;
 var long = -152.33551025390625;
 var lat1 = 0;
@@ -54,11 +58,11 @@ database.ref().child('/yelp/businesses/1').on('value', function (snap) {
     long1 = snap.val().coordinates.longitude;
     businessName = snap.val().alias;
     console.log(lat, long, businessName);
-    marker = new google.maps.Marker({
+    marker1 = new google.maps.Marker({
         position: {lat: lat1, lng: long1},
         title: businessName
     });
-    marker.setMap(map);
+    marker1.setMap(map);
     
 });
 
@@ -68,11 +72,11 @@ database.ref().child('/yelp/businesses/2').on('value', function (snap) {
     long2 = snap.val().coordinates.longitude;
     businessName = snap.val().alias;
     console.log(lat, long, businessName);
-    marker = new google.maps.Marker({
+    marker2 = new google.maps.Marker({
         position: {lat: lat2, lng: long2},
         title: businessName
     });
-    marker.setMap(map);
+    marker2.setMap(map);
     
 });
 
@@ -82,11 +86,11 @@ database.ref().child('/yelp/businesses/3').on('value', function (snap) {
     long3 = snap.val().coordinates.longitude;
     businessName = snap.val().alias;
     console.log(lat, long, businessName);
-    marker = new google.maps.Marker({
+    marker3 = new google.maps.Marker({
         position: {lat: lat3, lng: long3},
         title: businessName
     });
-    marker.setMap(map);
+    marker3.setMap(map);
     
 });
 
@@ -96,11 +100,18 @@ database.ref().child('/yelp/businesses/4').on('value', function (snap) {
     long4 = snap.val().coordinates.longitude;
     businessName = snap.val().alias;
     console.log(lat, long, businessName);
-    marker = new google.maps.Marker({
+    marker4 = new google.maps.Marker({
         position: {lat: lat4, lng: long4},
         title: businessName
     });
-    marker.setMap(map);
+    marker4.setMap(map);
     
 });
 
+$('#search-btn').on('click', function () {
+    marker.setMap(null);
+    marker1.setMap(null);
+    marker2.setMap(null);
+    marker3.setMap(null);
+    marker4.setMap(null);
+});
