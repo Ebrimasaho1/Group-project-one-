@@ -48,6 +48,7 @@ database.ref().child('/yelp/businesses/0').on('value', function (snap) {
         position: {lat: lat, lng: long},
         title: businessName
     });
+    map.setCenter({lat: lat, lng: long});
     marker.setMap(map);
     
 });
